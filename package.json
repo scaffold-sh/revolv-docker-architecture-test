@@ -1,0 +1,42 @@
+{
+  "name": "revolv-docker-architecture-test",
+  "version": "1.0.0",
+  "description": "A test application for the Docker architecture",
+  "author": "Revolv <support@getrevolv.com>",
+  "main": "./dist/index.js",
+  "scripts": {
+    "container:start:test": "jest",
+    "container:start:dev": "nodemon",
+    "container:start:prod": "node ./dist/index.js",
+    "container:build": "npm run container:clean:build && tsc && npm run container:copy:bin",
+    "container:copy:bin": "cpx 'src/bin/**' 'dist/bin'",
+    "container:clean:build": "rimraf dist",
+    "container:clean:build-for-prod": "rimraf dist/tests",
+    "test": "docker-compose -p revolv_example_test -f docker-compose.test.yml run --rm website",
+    "start": "docker-compose -p revolv_example_dev -f docker-compose.yml up --renew-anon-volumes --abort-on-container-exit --exit-code-from website",
+    "rebuild": "docker-compose -p revolv_example_dev -f docker-compose.yml build && docker-compose -p revolv_example_test -f docker-compose.test.yml build"
+  },
+  "dependencies": {
+    "express": "^4.16.1",
+    "tslib": "^2.0.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.6",
+    "@types/jest": "^25.2.3",
+    "@types/node": "^14.0.12",
+    "cpx": "^1.5.0",
+    "jest": "^25.1.0",
+    "nodemon": "^2.0.4",
+    "rimraf": "^3.0.2",
+    "ts-node": "^8.10.2",
+    "typescript": "^3.9.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/getrevolv/revolv-docker-architecture-test.git"
+  },
+  "bugs": {
+    "url": "https://github.com/getrevolv/revolv-docker-architecture-test/issues"
+  },
+  "homepage": "https://github.com/getrevolv/revolv-docker-architecture-test#readme"
+}

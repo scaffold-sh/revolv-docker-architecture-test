@@ -1,0 +1,11 @@
+version: "3.7"
+
+services:
+  website:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    command: /bin/sh -c 'npm run container:build && npm run container:start:test'
