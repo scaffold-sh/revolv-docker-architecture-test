@@ -17,7 +17,7 @@
     "rebuild": "docker-compose -p revolv_example_dev -f docker-compose.yml build && docker-compose -p revolv_example_test -f docker-compose.test.yml build"
   },
   "dependencies": {
-    "express": "^4.16.1",
+    "express": "^4.17.3",
     "tslib": "^2.0.0"
   },
   "devDependencies": {
